@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!-- namespace : 해당 Mapper 객체 연동위한 경로 일치 -->
+<!-- namespace : 해당 Mapper 객체 연동위한 인터페이스경로 일치 -->
 <mapper namespace="kr.board.mapper.BoardMapper">
 
+	<!-- id명은 인터페이스 메소드명과 일치 -->
 	<select id="getLists">
 		select * from board order by idx desc
 	</select>

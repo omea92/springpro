@@ -1,34 +1,42 @@
 package kr.board.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.board.entity.Board;
+import kr.board.mapper.BoardMapper;
 
 @Controller
 public class BoardController {
+	
+	//의존성주입 : 스프링컨테이너가 BoardMappe 객체 찾아서 생성
+	@Autowired
+	private BoardMapper mapper;
 	
 	//DB에서 리스트 조회결과를 가져오기
 	//url요청 처리, Handler Mapping
 	@RequestMapping("/boardList.do")
 	public String boardList(Model model) {
 		
-		Board vo = new Board();
-		vo.setIdx(1);
-		vo.setTitle("게시판실습");
-		vo.setContent("게시판실습");
-		vo.setWriter("박매일");
-		vo.setIndate("2024-09-27");
-		vo.setCount(0);
+//		Board vo = new Board();
+//		vo.setIdx(1);
+//		vo.setTitle("게시판실습");
+//		vo.setContent("게시판실습");
+//		vo.setWriter("박매일");
+//		vo.setIndate("2024-09-27");
+//		vo.setCount(0);
+//		
+//		List<Board> list = new ArrayList<>();
+//		list.add(vo);
+//		list.add(vo);
+//		list.add(vo);
 		
-		List<Board> list = new ArrayList<>();
-		list.add(vo);
-		list.add(vo);
-		list.add(vo);
+		//SqlSessionFactory를 구현받은 BoardMapper 인터페이스 메소드를 가져와서 SQL 호출
+		List<Board> list = mapper.getLists();
 		
 		//view단으로 전달위한 객체
 		model.addAttribute("list", list);
