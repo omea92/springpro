@@ -4,8 +4,8 @@
 <mapper namespace="kr.board.mapper.BoardMapper">
 
 	<!-- id명은 인터페이스 메소드명과 일치 -->
-	<select id="getLists">
-		select * from board order by idx desc
+	<select id="getLists" resultType="kr.board.entity.Board">
+		select * from myboard order by idx desc
 	</select>
 
 </mapper>
