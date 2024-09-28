@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.board.entity.Board;
@@ -45,5 +47,16 @@ public class BoardController {
 		//WEB-INF/views 매핑
 		//설정은 servlet-context.xml 참고
 		return "boardList";
+	}
+	
+	@GetMapping("/boardForm.do") //href 값과 일치시켜 URL 경로통해 boardForm.jsp 화면 보여주기
+	public String boardForm() {
+		return "boardForm";
+	}
+	
+	@PostMapping("/boardInsert.do")
+	public String boardInsert(Board vo) { //글쓰기의 title, content, writer 담기위한 파라미터
+		mapper.boardInsert(vo);
+		return "redirect:/boardList.do"; //저장 후 다시 목록으로 돌아가야하니 redirect
 	}
 }
