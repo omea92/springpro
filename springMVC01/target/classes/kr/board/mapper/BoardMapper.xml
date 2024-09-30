@@ -12,5 +12,23 @@
 		insert into myboard(title, content, writer) 
 		values(#{title}, #{content}, #{writer});
 	</insert>
-
+	
+	<!-- 파라미터로 넘어오는 자료형이 하나(int)인 경우 parameterType생략가능 -->
+	<!-- resultType : 반환값 구조를 조회 시 명시해야하기에 필요 -->
+	<select id="boardContent" resultType="kr.board.entity.Board">
+		select * from myboard where idx=#{idx}
+	</select>
+	
+	<delete id="boardDelete" parameterType="int">
+		delete from myboard where idx = #{idx}
+	</delete>
+	
+	<!-- 파라미터를 vo객로 했기에 parameterType을 Board -->
+	<update id="boardUpdate" parameterType="kr.board.entity.Board">
+		update myboard 
+		set title=#{title}, 
+			content=#{content}
+		where idx=#{idx}
+	</update>
+	
 </mapper>

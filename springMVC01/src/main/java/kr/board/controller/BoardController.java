@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.board.entity.Board;
 import kr.board.mapper.BoardMapper;
@@ -58,5 +60,39 @@ public class BoardController {
 	public String boardInsert(Board vo) { //글쓰기의 title, content, writer 담기위한 파라미터
 		mapper.boardInsert(vo);
 		return "redirect:/boardList.do"; //저장 후 다시 목록으로 돌아가야하니 redirect
+	}
+	
+	@GetMapping("/boardContent.do")
+	public String boardContent(int idx, Model model) {
+		//조회수 증가
+		mapper.boardCount(idx);
+		
+		//파라미터를 DB로 전달하여 조회결과 반환
+		Board vo = mapper.boardContent(idx);
+		model.addAttribute("vo", vo); //객체 바인딩은 모델사용
+		
+		return "boardContent"; //boardContent.jsp
+	}
+	
+	@GetMapping("/boardDelete.do/{idx}")
+	public String boardDelete(@PathVariable("idx") int idx) { // ?idx=6
+		mapper.boardDelete(idx); //삭제		
+		return "redirect:/boardList.do";
+	}
+	
+	@GetMapping("/boardUpdateForm.do/{idx}")
+	public String boardUpdate(@PathVariable("idx") int idx, Model model) {
+		//수정이니 기존 게시글 내용정보 가져오기
+		Board vo = mapper.boardContent(idx);
+		
+		//vo객체를 넘겨야 하니 Model 사용
+		model.addAttribute("vo", vo);
+		return "boardUpdate"; //boardUpdate.jsp
+	}
+	
+	@PostMapping("/boardUpdate.do")
+	public String boardUpdate(Board vo) { //idx, content, writer 한번에 넘기기위한 vo 객체
+		mapper.boardUpdate(vo); //수정처리
+		return "redirect:/boardList.do";
 	}
 }
