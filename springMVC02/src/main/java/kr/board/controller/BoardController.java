@@ -28,4 +28,10 @@ public class BoardController {
 		List<Board> list = boardMapper.getLists();
 		return list; //객체로 반환하는경우 json 형식으로 변환(API)해서 반환
 	}
+	
+	//@ResponseBody로 인하여 void 반환이어도 제어권이 ajax 통신으로 넘어가있음
+	@RequestMapping("/boardInsert.do")
+	public @ResponseBody void boardInsert(Board vo) {
+		boardMapper.boardInsert(vo); //등록성공
+	}
 }

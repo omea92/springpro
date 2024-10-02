@@ -67,6 +67,33 @@
   		$("#view").css("display", "block"); //보이기
   		$("#wfrom").css("display", "none"); //감추기
   	}
+  	
+  	//form안에 양식을 통채로 서버전달하여 등록
+  	function goInsert() {
+  		//해당 id값 가져오기
+  		/* var title = $("#title").val();
+  		var content = $("#content").val();
+  		var writer = $("#writer").val(); */
+  		
+  		//serialize() : 데이터를 & 구분자로 한줄로 가져오니 form데이터 한번에 가져온다.
+  		var fData = $("#frm").serialize();
+  		
+  		$.ajax({
+  			url: "boardInsert.do",
+  			type: "post",
+  			data: fData,
+  			success: loadList, //boardInsert.do 수행
+  			error : function() {
+  				alert("error");
+  			}
+  		});
+  		
+  		//초기화
+  		$("#title").val("");
+  		$("#content").val("");
+  		$("#writer").val("");
+  		
+  	}
   </script>
 </head>
 <body>
@@ -77,23 +104,23 @@
     <div class="panel-heading">Board</div>
     <div class="panel-body" id="view">Panel Content</div>
     <div class="panel-body" id="wfrom" style="display:none">
-   		<form action="boardInsert.do" method="post"> <!-- 서버받을 경로 지정 -->
+   		<form id="frm"> <!-- 서버받을 경로 지정 -->
     		<table class="table">
 	    		<tr>
 	    			<td>제목</td>
-	    			<td><input type="text" name="title" class="form-control"/></td>
+	    			<td><input type="text" name="title" id="title" class="form-control"/></td>
 	    		</tr>
 	    		<tr>
 	    			<td>내용</td>
-	    			<td><textarea rows="7" class="form-control" name="content"></textarea></td>
+	    			<td><textarea rows="7" class="form-control" name="content" id="content"></textarea></td>
 	    		</tr>
 	    		<tr>
 	    			<td>작성자</td>
-	    			<td><input type="text" name="writer" class="form-control"/></td>
+	    			<td><input type="text" name="writer" id="writer" class="form-control"/></td>
 	    		</tr>
 	    		<tr>
 	    			<td colspan="2" align="center">
-	    				<button type="submit" class="btn btn-success btn-sm">등록</button>
+	    				<button type="button" class="btn btn-success btn-sm" onclick="goInsert()">등록</button>
 	    				<button type="reset" class="btn btn-warning btn-sm">취소</button>
 	    				<button type="button" class="btn btn-warning btn-sm" onclick="goList()">리스트</button>
 	    			</td>
