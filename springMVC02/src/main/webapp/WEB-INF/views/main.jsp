@@ -44,9 +44,28 @@
   	  		listHtml += "<td>" + obj.writer + "</td>";
   	  		listHtml += "<td>" + obj.indate + "</td>";
   	  		listHtml += "<td>" + obj.count + "</td>";
+  			listHtml += "</tr>";
   		});
+  		
+  		listHtml += "<tr>";
+  		listHtml += "<td colspan='5'>";
+  		listHtml += "<button class='btn btn-primary btn-sm' onclick='goForm()'>글쓰기</button>";
+  		listHtml += "</td>";
   		listHtml += "</tr>";
+  		listHtml += "</table>";
   		$("#view").html(listHtml);
+  	}
+  	
+  	//글쓰기 눌러야 보이게 하기
+  	function goForm() {
+  		$("#view").css("display", "none"); //감추기
+  		$("#wfrom").css("display", "block"); //보이기
+  	}
+  	
+  	//목록으로 돌아가기
+  	function goList() {
+  		$("#view").css("display", "block"); //보이기
+  		$("#wfrom").css("display", "none"); //감추기
   	}
   </script>
 </head>
@@ -57,7 +76,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">Board</div>
     <div class="panel-body" id="view">Panel Content</div>
-    <div class="panel-body">
+    <div class="panel-body" id="wfrom" style="display:none">
    		<form action="boardInsert.do" method="post"> <!-- 서버받을 경로 지정 -->
     		<table class="table">
 	    		<tr>
@@ -76,6 +95,7 @@
 	    			<td colspan="2" align="center">
 	    				<button type="submit" class="btn btn-success btn-sm">등록</button>
 	    				<button type="reset" class="btn btn-warning btn-sm">취소</button>
+	    				<button type="button" class="btn btn-warning btn-sm" onclick="goList()">리스트</button>
 	    			</td>
 	    		</tr>
 	    	</table>
