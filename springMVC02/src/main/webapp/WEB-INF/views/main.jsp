@@ -40,11 +40,19 @@
   		$.each(data, function(index, obj){
   			listHtml += "<tr>";
   	  		listHtml += "<td>" + obj.idx + "</td>";
-  	  		listHtml += "<td>" + obj.title + "</td>";
+  	  		listHtml += "<td><a href='javascript:goContent(" + obj.idx + ")'>" + obj.title + "</a></td>";
   	  		listHtml += "<td>" + obj.writer + "</td>";
   	  		listHtml += "<td>" + obj.indate + "</td>";
   	  		listHtml += "<td>" + obj.count + "</td>";
   			listHtml += "</tr>";
+  			  			
+  			//반복문인것을 활용하여 id값에 인덱스값을 파리미터화 해서 동적 처리
+  			listHtml += "<tr id='c" + obj.idx + "' style='display:none'>";
+  			listHtml += "<td>내용</td>";
+  			listHtml += "<td colspan='4'>";
+  			listHtml += "<textarea rows='7' class='form-control'>" + obj.content + "</textarea>";
+  			listHtml += "</td>";
+  			listHtml += "</tr>";  			
   		});
   		
   		listHtml += "<tr>";
@@ -89,10 +97,18 @@
   		});
   		
   		//초기화
-  		$("#title").val("");
+  		/* $("#title").val("");
   		$("#content").val("");
-  		$("#writer").val("");
+  		$("#writer").val(""); */
+  		$("#fclear").trigger("click");
   		
+  	}
+  	
+  	//제목 클릭시 해당 내용 보이게
+  	function goContent(idx) {
+  		// 보이게 처리
+  		// block은 tr태그에서는 한줄로 처리하므로 깨지기에 table-row로 사용
+  		$("#c" + idx).css("display", "table-row");
   	}
   </script>
 </head>
@@ -121,7 +137,7 @@
 	    		<tr>
 	    			<td colspan="2" align="center">
 	    				<button type="button" class="btn btn-success btn-sm" onclick="goInsert()">등록</button>
-	    				<button type="reset" class="btn btn-warning btn-sm">취소</button>
+	    				<button type="reset" class="btn btn-warning btn-sm" id="fclear">취소</button>
 	    				<button type="button" class="btn btn-warning btn-sm" onclick="goList()">리스트</button>
 	    			</td>
 	    		</tr>
