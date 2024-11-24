@@ -16,8 +16,27 @@
   <h2>Spring MVC01</h2>
   <div class="panel panel-default">
     <div class="panel-heading">BOARD</div>
-    <div class="panel-body">Panel Content</div>
-    <div class="panel-footer">인프런_스프1탄_정원준</div>
+    <div class="panel-body">
+    	<table class="table table-bordered table-hover">
+    		<tr>
+    			<td>번호</td>
+    			<td>제목</td>
+    			<td>작성자</td>
+    			<td>작성일</td>
+    			<td>조회수</td>
+    		</tr>
+    		<c:forEach var="vo" items="${list }">
+    			<tr>
+    				<td>${vo.idx }</td>
+    				<td>${vo.title }</td>
+    				<td>${vo.writer }</td>
+    				<td>${vo.indate }</td>
+    				<td>${vo.count }</td>
+    			</tr>
+    		</c:forEach>
+    	</table>
+    </div>
+    <div class="panel-footer">스프링_스프1탄_테스트</div>
   </div>
 </div>
 
