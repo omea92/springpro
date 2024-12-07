@@ -8,5 +8,10 @@
 		from myboard
 		order by idx desc
 	</select>
+	
+	<insert id="boardInsert" parameterType="kr.board.entity.Board">
+		INSERT INTO myboard(title, content, writer)
+		values(#{title}, #{content}, #{writer})
+	</insert>
 
 </mapper>
