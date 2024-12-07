@@ -19,31 +19,30 @@
   <div class="panel panel-default">
     <div class="panel-heading">BOARD</div>
     <div class="panel-body">
-    	<table class="table">
-    		<tr>
-    			<td>제목</td>
-    			<td>${vo.title}</td>
-    		</tr>
-    		<tr>
-    			<td>내용</td>
-    			<td>${fn:replace(vo.content,newLineChar,"<br/>")}</td>
-    		</tr>
-    		<tr>
-    			<td>작성자</td>
-    			<td>${vo.writer}</td>
-    		</tr>
-    		<tr>
-    			<td>작성일</td>
-    			<td>${fn:split(vo.indate, " ")[0]}</td> <!-- 공백기준 앞에것 가져오기 -->
-    		</tr>
-    		<tr>
-    			<td colspan="2" align="center">
-    				<a href="boardUpdateForm.do/${vo.idx}" class="btn btn-primary btn-sm">수정화면</a>
-    				<a href="boardDelete.do/${vo.idx}" class="btn btn-warning btn-sm">삭제</a>
-    				<a href="boardList.do" class="btn btn-info btn-sm">목록</a>
-    			</td>
-    		</tr>
-    	</table>
+    	<form action="../boardUpdate.do" method="post">
+    		<input type="hidden" name="idx" value="${vo.idx}"/>
+    		<table class="table table-bordered">
+    			<tr>
+    				<td>제목</td>
+    				<td><input type="text" name="title" class="form-control" value="${vo.title}"></td>
+    			</tr>
+    			<tr>
+    				<td>내용</td>
+    				<td><textarea rows="7" class="form-control" name="content">${vo.content}</textarea></td>
+    			</tr>
+    			<tr>
+    				<td>작성자</td>
+    				<td><input type="text" class="form-control" value="${vo.writer}" readonly="readonly"></td>
+    			</tr>
+    			<tr>
+    				<td colspan="2" align="center">
+    					<button type="submit" class="btn btn-primary btn-sm">수정</button>
+    					<button type="reset" class="btn btn-warning btn-sm">취소</button>
+    					<button type="button" class="btn btn-info btn-sm" onclick="location.href='boardList.do'">목록</button>
+    				</td>
+    			</tr>
+    		</table>
+    	</form>
     </div>
     <div class="panel-footer">인프런_스프_정원준</div>
   </div>

@@ -60,4 +60,17 @@ public class BoardController {
 		
 		return "redirect:/boardList.do";
 	}
+	
+	@GetMapping("/boardUpdateForm.do/{idx}")
+	public String boardUpdateForm(@PathVariable("idx")int idx, Model model) {
+		Board vo = mapper.boardContent(idx);
+		model.addAttribute("vo", vo);
+		return "boardUpdate";
+	}
+	
+	@PostMapping("/boardUpdate.do")
+	public String boardUpdate(Board vo) {
+		mapper.boardUpdate(vo); //수정
+		return "redirect:/boardList.do";
+	}
 }

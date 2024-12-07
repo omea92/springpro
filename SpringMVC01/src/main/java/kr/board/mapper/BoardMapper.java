@@ -12,5 +12,6 @@ public interface BoardMapper {
 	public Board boardContent(int idx); //상세보기
 	public void boardInsert(Board vo); //등록
 	public void boardDelete(int idx); //삭제
+	public void boardUpdate(Board vo); //수정
 	
 }
