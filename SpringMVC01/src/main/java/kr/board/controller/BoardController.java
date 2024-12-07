@@ -46,8 +46,10 @@ public class BoardController {
 	//상세보기
 	@GetMapping("/boardContent.do")
 	public String boardContent(@RequestParam("idx") int idx, Model model) {
-		
 		Board vo = mapper.boardContent(idx);
+		
+		mapper.boardCount(idx); //조회수 증가
+		
 		model.addAttribute("vo", vo);
 		
 		return "boardContent";
