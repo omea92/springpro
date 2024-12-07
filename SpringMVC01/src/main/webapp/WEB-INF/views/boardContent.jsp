@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Spring MVC01</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -17,27 +17,31 @@
   <div class="panel panel-default">
     <div class="panel-heading">BOARD</div>
     <div class="panel-body">
-    	<table class="table table-bordered table-hover">
+    	<table class="table">
     		<tr>
-    			<td>번호</td>
     			<td>제목</td>
-    			<td>작성자</td>
-    			<td>작성일</td>
-    			<td>조회수</td>
+    			<td>${vo.title}</td>
     		</tr>
-    		<c:forEach var="vo" items="${list}">
-    			<tr>
-    				<td>${vo.idx}</td>
-    				
-    				<!-- 게시글 상세보기 링크 -->
-    				<td><a href="boardContent.do?idx=${vo.idx}">${vo.title}</a></td>
-    				<td>${vo.writer}</td>
-    				<td>${vo.indate}</td>
-    				<td>${vo.count}</td>
-    			</tr>
-    		</c:forEach>
+    		<tr>
+    			<td>내용</td>
+    			<td>${vo.content}</td>
+    		</tr>
+    		<tr>
+    			<td>작성자</td>
+    			<td>${vo.writer}</td>
+    		</tr>
+    		<tr>
+    			<td>작성일</td>
+    			<td>${vo.indate}</td>
+    		</tr>
+    		<tr>
+    			<td colspan="2" align="center">
+    				<button class="btn btn-primary btn-sm">수정화면</button>
+    				<button class="btn btn-warning btn-sm">삭제</button>
+    				<button class="btn btn-info btn-sm">목록</button>
+    			</td>
+    		</tr>
     	</table>
-    	<a href="boardForm.do" class="btn btn-primary btn-sm">글쓰기</a>
     </div>
     <div class="panel-footer">인프런_스프_정원준</div>
   </div>
