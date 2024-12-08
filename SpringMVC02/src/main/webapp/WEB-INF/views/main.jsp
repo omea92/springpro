@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Spring MVC02</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -14,7 +14,7 @@
 <body>
  
 <div class="container">
-  <h2>Spring MVC01</h2>
+  <h2>Spring MVC02</h2>
   <div class="panel panel-default">
     <div class="panel-heading">BOARD</div>
     <div class="panel-body">Panel Content</div>
