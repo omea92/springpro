@@ -49,8 +49,25 @@
   			listHtml += "<td>" + obj.count + "</td>";
   			listHtml += "</tr>";
   		});
+  		
+  		listHtml += "<tr>";
+  		listHtml += "<td colspan='5'>";
+  		listHtml += "<button class='btn btn-primary btn-sm' onclick='goForm()'>글쓰기</button>";
+  		listHtml += "</td>";
+  		listHtml += "</tr>";
   		listHtml += "</table>";
   		$("#view").html(listHtml);
+  	}
+  	
+  	//화면 글쓰기 폼 보이기, 감추기
+  	function goForm() {
+  		$("#view").css("display", "none"); //감추기
+  		$("#wfrom").css("display", "block"); //보이기
+  	}
+  	
+  	function goList() {
+  		$("#view").css("display", "block"); //보이기
+  		$("#wfrom").css("display", "none"); //감추기
   	}
   </script>
 </head>
@@ -61,6 +78,31 @@
   <div class="panel panel-default">
     <div class="panel-heading">BOARD</div>
     <div class="panel-body" id="view">Panel Content</div>
+    <div class="panel-body" id="wfrom" style="display:none">
+    	<form action="boardInsert.do" method="post">
+    		<table class="table">
+	    		<tr>
+	    			<td>제목</td>
+	    			<td><input type="text" name="title" class="form-control"/></td>
+	    		</tr>
+	    		<tr>
+	    			<td>내용</td>
+	    			<td><textarea rows="7" class="from-control" name="content"></textarea></td>
+	    		</tr>
+	    		<tr>
+	    			<td>작성자</td>
+	    			<td><input type="text" name="writer" class="form-control"/></td>
+	    		</tr>
+	    		<tr>
+	    			<td colspan="2" align="center">
+	    				<button type="submit" class="btn btn-success btn-sm">등록</button>
+	    				<button type="reset" class="btn btn-warning btn-sm">취소</button>
+	    				<button type="button" class="btn btn-info btn-sm" onclick="goList()">리스트</button>
+	    			</td>
+	    		</tr>
+	    	</table>
+    	</form>
+    </div>
     <div class="panel-footer">인프런_스프_정원준</div>
   </div>
 </div>
