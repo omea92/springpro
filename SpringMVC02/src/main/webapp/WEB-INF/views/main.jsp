@@ -43,10 +43,17 @@
   		$.each(data, function(index, obj) {
   			listHtml += "<tr>";
   			listHtml += "<td>" + obj.idx + "</td>";
-  			listHtml += "<td>" + obj.title + "</td>";
+  			listHtml += "<td><a href='javascript:goContent(" + obj.idx + ")'>" + obj.title + "</a></td>";
   			listHtml += "<td>" + obj.writer + "</td>";
   			listHtml += "<td>" + obj.indate + "</td>";
   			listHtml += "<td>" + obj.count + "</td>";
+  			listHtml += "</tr>";
+  			
+  			listHtml += "<tr id='c" + obj.idx + "' style='display:none'>";
+  			listHtml += "<td>내용</td>";
+  			listHtml += "<td colspan='4'";
+  			listHtml += "<textarea rows='7' class='form-control'>" + obj.content + "</textarea>";
+  			listHtml += "</td>";
   			listHtml += "</tr>";
   		});
   		
@@ -90,10 +97,13 @@
   			error : function() { alert("error"); }
   		});
   		
-  		//입력 폼 초기화
-  		$("#title").val("");
-  		$("#content").val("");
-  		$("#writer").val("");
+  		//입력 폼 초기화  		
+  		$("#fclear").trigger("click"); //취소 이벤트 발생시켜 한번에 초기화
+  	}
+  	
+  	//제목 누를 시 내용 슬라이드 오픈
+  	function goContent(idx) {
+  		$("#c" + idx).css("display", "table-row"); //보이게
   	}
   </script>
 </head>
@@ -122,7 +132,7 @@
 	    		<tr>
 	    			<td colspan="2" align="center">
 	    				<button type="button" class="btn btn-success btn-sm" onclick="goInsert()">등록</button>
-	    				<button type="reset" class="btn btn-warning btn-sm">취소</button>
+	    				<button type="reset" class="btn btn-warning btn-sm" id="fclear">취소</button>
 	    				<button type="button" class="btn btn-info btn-sm" onclick="goList()">리스트</button>
 	    			</td>
 	    		</tr>
