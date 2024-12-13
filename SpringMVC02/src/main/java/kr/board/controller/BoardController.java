@@ -28,4 +28,10 @@ public class BoardController {
 		
 		return list; //객체를 넘겨응답 = JSON 타입 반환 적합
 	}
+	
+	//등록
+	@RequestMapping("/boardInsert.do")
+	public @ResponseBody void boardInsert(Board vo) {
+		mapper.boardInsert(vo); //등록성공
+	}
 }
